@@ -1,0 +1,1 @@
+const button=document.querySelector('.theme-toggle');const saved=localStorage.getItem('iseler-theme');if(saved==='dark')document.body.classList.add('dark');button.addEventListener('click',()=>{document.body.classList.toggle('dark');localStorage.setItem('iseler-theme',document.body.classList.contains('dark')?'dark':'light')});
