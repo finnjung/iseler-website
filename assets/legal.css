@@ -1,1 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap');*{box-sizing:border-box}body{margin:0;background:#f3f1ed;color:#111318;font-family:Manrope,Arial}main{max-width:800px;margin:auto;padding:8vw 30px}a{color:#d74321;font-weight:800;text-decoration:none;font-size:14px}main>p{color:#d74321;font-size:11px;letter-spacing:.13em;margin:65px 0 17px}h1{font-size:clamp(50px,9vw,88px);letter-spacing:-.07em;margin:0 0 65px}section{border-top:1px solid #d4d0c9;padding-top:25px}h2{font-size:19px;margin:31px 0 8px}section p{font-size:15px;line-height:1.8;margin:0;color:#414247}
+@font-face{font-family:Archivo;src:url(fonts/archivo-latin-standard-normal.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+:root,[data-theme="dark"]{color-scheme:dark;--bg:#0a111e;--text:#eef1f6;--text-2:#a9b4c8;--line:#25344f;--accent:#ff5a68}
+[data-theme="light"]{color-scheme:light;--bg:#eef0f3;--text:#111827;--text-2:#475166;--line:#d3d8e0;--accent:#c10016}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.7 Archivo,system-ui,sans-serif}
+main{max-width:760px;margin:auto;padding:clamp(40px,8vw,96px) 20px}
+a{color:var(--accent)}
+.back{font-weight:700;text-decoration:none;font-size:15px}
+.state{color:var(--text-2);font-size:14px;margin:56px 0 10px}
+h1{font-size:clamp(40px,8vw,72px);font-weight:850;font-stretch:112%;letter-spacing:-.03em;line-height:1;margin:0 0 48px}
+section{border-top:1px solid var(--line);padding-top:12px}
+h2{font-size:19px;margin:32px 0 8px}
+section p{margin:0;color:var(--text-2)}

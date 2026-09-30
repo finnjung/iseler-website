@@ -1,8 +1,64 @@
-// Teile-Anfrage: Fahrzeugschein-Formular baut eine vorausgefüllte E-Mail
+// WhatsApp-Nummer des Iseler-Bots im internationalen Format ohne "+" und ohne Leerzeichen,
+// z. B. '4961046237500'. Solange sie leer ist, laufen die WhatsApp-Elemente im Vorschau-Modus:
+// sichtbar, aber ein Klick erklärt nur, dass die Nummer noch folgt.
+const WHATSAPP_NUMBER = '';
+
+const store = {
+  get: k => { try { return localStorage.getItem(k); } catch { return null; } },
+  set: (k, v) => { try { localStorage.setItem(k, v); } catch {} }
+};
+const waLink = text => `https://wa.me/${WHATSAPP_NUMBER}${text ? `?text=${encodeURIComponent(text)}` : ''}`;
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Design: dunkel als Standard, hell per Schalter
+(() => {
+  const root = document.documentElement;
+  const btn = document.querySelector('[data-theme-toggle]');
+  const meta = document.querySelector('meta[name="theme-color"]');
+  const sync = () => {
+    const dark = root.dataset.theme !== 'light';
+    btn.setAttribute('aria-label', dark ? 'Helles Design einschalten' : 'Dunkles Design einschalten');
+    meta.content = dark ? '#0a111e' : '#eef0f3';
+  };
+  btn.addEventListener('click', () => {
+    root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light';
+    store.set('iseler-theme', root.dataset.theme);
+    sync();
+  });
+  sync();
+})();
+
+// WhatsApp-Button unten rechts
+(() => {
+  const box = document.querySelector('[data-wa]');
+  const bubble = box.querySelector('.wa-bubble');
+  if (!WHATSAPP_NUMBER) {
+    bubble.querySelector('p').innerHTML = '<strong>Vorschau:</strong> Hier geht es bald direkt zum WhatsApp-Bot von Iseler. Die Nummer tragen wir noch ein.';
+    document.querySelectorAll('a[data-wa-link]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); bubble.hidden = false; }));
+    box.querySelector('.wa-close').addEventListener('click', () => { bubble.hidden = true; });
+    setTimeout(() => box.classList.add('show'), reduceMotion ? 0 : 1200);
+    return;
+  }
+  document.querySelectorAll('a[data-wa-link]').forEach(a => {
+    a.href = waLink('Hallo Autoteile Iseler, ich habe eine Frage:');
+    a.target = '_blank';
+    a.rel = 'noopener';
+  });
+  const close = () => { bubble.hidden = true; store.set('iseler-wa-hint', '1'); };
+  box.querySelector('.wa-close').addEventListener('click', close);
+  box.querySelector('.wa-fab').addEventListener('click', close);
+  setTimeout(() => box.classList.add('show'), reduceMotion ? 0 : 1200);
+  if (!store.get('iseler-wa-hint')) {
+    setTimeout(() => { bubble.hidden = false; }, 4500);
+    setTimeout(() => { if (!bubble.hidden) bubble.hidden = true; }, 16000);
+  }
+})();
+
+// Teile-Anfrage: Fahrzeugschein-Formular baut eine fertige Nachricht
 (() => {
   const form = document.getElementById('anfrage');
-  if (!form) return;
   const hint = form.querySelector('.schein-hint');
+  const defaultHint = hint.textContent;
   const fin = form.elements.fin;
   const count = form.querySelector('.fin-count');
 
@@ -12,71 +68,78 @@
   });
   form.elements.hsn.addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, ''); });
   form.elements.tsn.addEventListener('input', e => { e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ''); });
+  form.addEventListener('input', e => {
+    e.target.closest('.feld')?.classList.remove('bad');
+    if (hint.classList.contains('bad')) { hint.classList.remove('bad'); hint.textContent = defaultHint; }
+  });
 
   form.addEventListener('submit', e => {
     e.preventDefault();
     const v = n => form.elements[n].value.trim();
+    const hasCar = (v('hsn').length === 4 && v('tsn').length === 3) || v('fin').length === 17;
+    const bad = [];
+    if (!hasCar) bad.push('hsn', 'tsn', 'fin');
+    if (!v('teil')) bad.push('teil');
     form.querySelectorAll('.feld').forEach(f => f.classList.remove('bad'));
-    const hasCar = (v('hsn').length === 4 && v('tsn').length >= 3) || v('fin').length === 17;
-    if (!hasCar || !v('teil')) {
-      if (!hasCar) ['hsn', 'tsn', 'fin'].forEach(n => form.elements[n].closest('.feld').classList.add('bad'));
-      if (!v('teil')) form.elements.teil.closest('.feld').classList.add('bad');
-      hint.classList.remove('ok');
+    if (bad.length) {
+      bad.forEach(n => form.elements[n].closest('.feld').classList.add('bad'));
+      hint.className = 'schein-hint bad';
       hint.textContent = !hasCar
         ? 'Bitte HSN und TSN (Zeile 2.1 und 2.2) oder die vollständige 17-stellige FIN (Zeile E) eintragen.'
         : 'Bitte kurz beschreiben, welches Teil Sie brauchen.';
+      form.elements[bad[0]].focus();
       return;
     }
     const lines = [
-      'Hallo Team Iseler,', '', 'ich suche folgendes Teil:', v('teil'), '',
+      'Hallo Autoteile Iseler,', '', `ich suche: ${v('teil')}`, '',
       `HSN (2.1): ${v('hsn') || '-'}`, `TSN (2.2): ${v('tsn') || '-'}`, `FIN (E): ${v('fin') || '-'}`, '',
       `Name: ${v('name') || '-'}`, `Rückruf: ${v('tel') || '-'}`
-    ];
-    const subject = `Teile-Anfrage: ${v('teil')}`;
-    location.href = `mailto:info@iseler.de?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
-    hint.classList.add('ok');
-    hint.textContent = 'Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage. Nur noch auf Senden tippen.';
+    ].join('\n');
+    if (e.submitter?.value === 'whatsapp' && !WHATSAPP_NUMBER) {
+      hint.className = 'schein-hint ok';
+      hint.textContent = 'Vorschau: Der WhatsApp-Versand wird freigeschaltet, sobald die Nummer eingetragen ist. Per E-Mail geht es schon.';
+      return;
+    }
+    const viaWa = e.submitter?.value === 'whatsapp';
+    if (viaWa) window.open(waLink(lines), '_blank', 'noopener');
+    else location.href = `mailto:info@iseler.de?subject=${encodeURIComponent(`Teile-Anfrage: ${v('teil')}`)}&body=${encodeURIComponent(lines)}`;
+    hint.className = 'schein-hint ok';
+    hint.textContent = viaWa
+      ? 'WhatsApp öffnet sich mit der fertigen Anfrage. Nur noch auf Senden tippen.'
+      : 'Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage. Nur noch auf Senden tippen.';
   });
 })();
 
-// Tourenplan: Live-Status der nächsten Werkstatt-Lieferung (Zeit in Europe/Berlin)
+// Tourenplan: Status der nächsten Werkstatt-Lieferung, Zeit in Europe/Berlin
 (() => {
   const status = document.getElementById('tour-status');
-  if (!status) return;
   const clock = document.getElementById('tour-clock');
-  const fill = document.getElementById('tour-fill');
   const mark = document.getElementById('tour-mark');
-  const scale = document.querySelector('.tour-scale');
-  const START = 7 * 60, END = 18 * 60;
-  const pos = m => Math.min(100, Math.max(0, (m - START) / (END - START) * 100));
+  const START = 7 * 60, END = 18 * 60, CUT1 = 8 * 60 + 45, CUT2 = 12 * 60 + 30;
+  const pos = m => Math.min(100, Math.max(0, (m - START) / (END - START) * 100)) + '%';
 
-  scale.querySelectorAll('span').forEach(s => { s.style.left = pos(+s.textContent * 60) + '%'; });
-  document.querySelectorAll('.tour-cut').forEach((c, i) => c.style.setProperty('--at', pos(i ? 12 * 60 + 30 : 8 * 60 + 45) + '%'));
+  document.querySelectorAll('.tour-scale span').forEach(s => { s.style.left = pos(+s.textContent * 60); });
+  document.querySelectorAll('.tour-cut').forEach(c => c.style.setProperty('--at', pos(+c.dataset.at)));
 
   const fmt = n => String(n).padStart(2, '0');
-  const left = mins => mins >= 60 ? `${Math.floor(mins / 60)} Std. ${mins % 60} Min.` : `${mins} Min.`;
+  const left = m => m >= 60 ? `${Math.floor(m / 60)} Std. ${m % 60} Min.` : `${m} Min.`;
   const days = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
 
   function tick() {
-    const parts = Object.fromEntries(new Intl.DateTimeFormat('de-DE', { timeZone: 'Europe/Berlin', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
-      .formatToParts(new Date()).map(p => [p.type, p.value]));
-    const h = +parts.hour, m = +parts.minute;
-    const wd = ['So.', 'Mo.', 'Di.', 'Mi.', 'Do.', 'Fr.', 'Sa.'].indexOf(parts.weekday);
-    const now = h * 60 + m;
-    clock.textContent = `${fmt(h)}:${fmt(m)}`;
+    const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Berlin', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
+      .formatToParts(new Date()).map(x => [x.type, x.value]));
+    const h = +p.hour, m = +p.minute, now = h * 60 + m;
+    const wd = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(p.weekday);
     const workday = wd >= 1 && wd <= 5;
-    const nextDay = wd >= 5 || wd === 0 ? 'Montag' : 'morgen';
+    clock.textContent = `${fmt(h)}:${fmt(m)}`;
 
     let html;
-    if (workday && now < 8 * 60 + 45) html = `Jetzt bestellen, <mark>heute Vormittag</mark> geliefert. Noch ${left(8 * 60 + 45 - now)}.`;
-    else if (workday && now < 12 * 60 + 30) html = `Jetzt bestellen, <mark>heute Nachmittag</mark> geliefert. Noch ${left(12 * 60 + 30 - now)}.`;
-    else html = `Heute sind beide Touren unterwegs. Nächste Lieferung <mark>${nextDay} Vormittag</mark>.`;
-    if (!workday && wd !== -1) html = `${days[wd]}: keine Tour. Bestellungen gehen <mark>Montag Vormittag</mark> raus.`;
+    if (!workday) html = `${days[wd]}: keine Tour. Bestellungen gehen <em>Montag Vormittag</em> raus.`;
+    else if (now < CUT1) html = `Jetzt bestellen, <em>heute Vormittag</em> geliefert. Noch ${left(CUT1 - now)}.`;
+    else if (now < CUT2) html = `Jetzt bestellen, <em>heute Nachmittag</em> geliefert. Noch ${left(CUT2 - now)}.`;
+    else html = `Beide Touren sind unterwegs. Nächste Lieferung <em>${wd === 5 ? 'Montag' : 'morgen'} Vormittag</em>.`;
     status.innerHTML = html;
-
-    const p = workday ? pos(now) : 0;
-    fill.style.width = p + '%';
-    mark.style.left = p + '%';
+    mark.style.setProperty('--now', workday ? pos(now) : '0%');
   }
   tick();
   setInterval(tick, 30000);
