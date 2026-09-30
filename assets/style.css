@@ -45,7 +45,7 @@
 :root{--r:8px;--gutter:clamp(16px,5vw,72px);--max:1360px;--ease:cubic-bezier(.16,1,.3,1)}
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:88px}
+html{background:var(--bg);scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:88px}
 body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 Archivo,system-ui,sans-serif;overflow-x:hidden;transition:background .3s,color .3s}
 a{color:inherit}
 img,svg{display:block;max-width:100%}
@@ -262,7 +262,7 @@ section>.section-title,.werkstatt-head,.team-lede{max-width:var(--max)}
 @media (max-width:860px){.bar nav{display:none}.theme{margin-left:auto}}
 @media (max-width:760px){
   html{scroll-padding-top:72px}
-  .bar{height:64px;gap:10px;padding:0 16px}
+  .bar{height:64px;gap:10px;padding:0 16px;background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none}
   .logo{height:42px}
   .bar-call{padding:11px 12px}
   .bar-call span{display:none}

@@ -2,6 +2,7 @@
 :root,[data-theme="dark"]{color-scheme:dark;--bg:#0a111e;--text:#eef1f6;--text-2:#a9b4c8;--line:#25344f;--accent:#ff5a68}
 [data-theme="light"]{color-scheme:light;--bg:#eef0f3;--text:#111827;--text-2:#475166;--line:#d3d8e0;--accent:#c10016}
 *{box-sizing:border-box}
+html{background:var(--bg)}
 body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.7 Archivo,system-ui,sans-serif}
 main{max-width:760px;margin:auto;padding:clamp(40px,8vw,96px) 20px}
 a{color:var(--accent)}
