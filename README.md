@@ -17,6 +17,15 @@ Moderner Website-Entwurf für die **Autoteile Iseler GmbH** in Heusenstamm.
 - Offen: Öffnungszeiten, KS-Tools-Partnerschaft noch aktuell?, Logo
 - Fonts: Archivo (variable Breite) + IBM Plex Mono; Farben Iseler-Rot #d8231c, Navy #0d2350, Fahrzeugschein-Grün #dde9d8
 
+## Logo
+Leon hat das neue Logo am 16.09.2026 per WhatsApp geschickt, nur als PNG (`assets/logo/original-leon-2026-09-16.png`). Am 30.09. mit potrace nach SVG vektorisiert, Farben exakt aus dem PNG:
+- `iseler-logo.svg`: Original mit Glanzkante (#0E437E / #2E5B8D, #E00018 / #E94758)
+- `iseler-logo-flach.svg`: ohne Glanz, zweifarbig
+- `iseler-logo-negativ.svg`: weiß plus rot für dunkle Flächen
+- `iseler-logo-weiss.svg` / `iseler-logo-schwarz.svg`: einfarbig
+- `iseler-logo-2400.png`: Raster für Social Media
+Die Originaldatei (AI/EPS/PDF) der Agentur wäre trotzdem besser. Bei Leon nachfragen.
+
 ## Zusammenarbeit
 Das GitHub-Repository und dieser Projektstand sind die gemeinsame Quelle für Hermes, Claude und Codex. Dauerhafte Projektfakten sind zusätzlich in OpenViking dokumentiert.
 

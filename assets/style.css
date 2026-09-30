@@ -5,10 +5,10 @@
   --paper:#fbfbf8;
   --ink:#121722;
   --ink-2:#4a5263;
-  --navy:#0d2350;
-  --navy-2:#16336e;
-  --red:#d8231c;
-  --red-dark:#b41912;
+  --navy:#0e437e;
+  --navy-2:#1a5494;
+  --red:#e00018;
+  --red-dark:#b80014;
   --schein:#dde9d8;
   --schein-line:#9fb8a0;
   --schein-ink:#23402f;
@@ -107,14 +107,14 @@ img,svg{display:block}
 .werkstatt{background:var(--navy);color:#fff;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,6vw,96px);padding:clamp(72px,9vw,140px) var(--gutter);align-items:center}
 .werkstatt h2{margin:0;font:900 clamp(34px,4.4vw,64px)/.95 Archivo,sans-serif;font-variation-settings:"wdth" 112;letter-spacing:-.025em;max-width:13em}
 .werkstatt-copy p{max-width:32em;color:#c8d3ea;margin:26px 0 32px}
-.tour{background:var(--navy-2);border:1px solid #2c4c8e;border-radius:8px;padding:clamp(22px,3vw,36px)}
+.tour{background:var(--navy-2);border:1px solid #3d6aa8;border-radius:8px;padding:clamp(22px,3vw,36px)}
 .tour-now{margin:0;display:flex;align-items:center;gap:10px;font:500 14px "IBM Plex Mono",monospace;color:#a9bbe0}
 .tour-now span#tour-clock{color:#fff;font-weight:600}
 .tour-dot{width:9px;height:9px;border-radius:50%;background:#43d17a;box-shadow:0 0 0 0 rgba(67,209,122,.6);animation:pulse 2s infinite}
 @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(67,209,122,0)}100%{box-shadow:0 0 0 0 rgba(67,209,122,0)}}
 .tour-status{margin:14px 0 40px;font:800 clamp(22px,2.3vw,32px)/1.15 Archivo,sans-serif;font-variation-settings:"wdth" 100;letter-spacing:-.01em;min-height:2.3em}
 .tour-status mark{background:var(--marker);color:var(--ink);padding:0 .2em;border-radius:2px}
-.tour-line{position:relative;height:14px;background:#0a1b3f;border-radius:7px;margin:56px 0 44px}
+.tour-line{position:relative;height:14px;background:#0a2f5a;border-radius:7px;margin:56px 0 44px}
 .tour-fill{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,#2c4c8e,#5b7fc4);border-radius:7px;transition:width .8s}
 .tour-cut{position:absolute;left:var(--at);top:-50px;bottom:-4px;transform:translateX(-1px);border-left:2px dashed var(--marker);padding-left:8px;font-size:13px;line-height:1.2;color:#c8d3ea}
 .tour-cut b{display:block;color:#fff;font:600 15px "IBM Plex Mono",monospace}
@@ -254,3 +254,8 @@ img,svg{display:block}
 }
 .story .section-title{font-size:clamp(30px,3.3vw,52px);font-variation-settings:"wdth" 96;hyphens:manual;overflow-wrap:break-word}
 @media (max-width:760px){.years li{grid-template-columns:88px 1fr}.years b{font-size:22px}}
+
+/* Logo (vektorisiert aus Leons PNG, 30.09.2026) */
+.mark-logo{height:62px;width:auto}.bar{padding-block:10px}
+.foot-logo{height:52px;width:auto}
+@media (max-width:760px){.mark-logo{height:42px}}
