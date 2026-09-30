@@ -45,8 +45,8 @@
 :root{--r:8px;--gutter:clamp(16px,5vw,72px);--max:1360px;--ease:cubic-bezier(.16,1,.3,1)}
 
 *{box-sizing:border-box}
-html{background:var(--bg);scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:88px}
-body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 Archivo,system-ui,sans-serif;overflow-x:hidden;transition:background .3s,color .3s}
+html{background:var(--bg);overflow-x:clip;scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:88px}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 Archivo,system-ui,sans-serif;overflow-x:hidden;overflow-x:clip;transition:background .3s,color .3s}
 a{color:inherit}
 img,svg{display:block;max-width:100%}
 svg{width:1.15em;height:1.15em;flex:none}
@@ -101,7 +101,8 @@ svg{width:1.15em;height:1.15em;flex:none}
 .seg{stroke:#3d74b8}
 .seg.red{stroke:var(--accent)}
 [data-theme="light"] .seg:not(.red){stroke:#0e437e}
-.needle{transform-origin:300px 300px;transform:rotate(-24deg)}
+@property --needle{syntax:"<angle>";inherits:false;initial-value:-24deg}
+.needle{transform-origin:300px 300px;transform:rotate(var(--needle))}
 .needle path{fill:#fff;opacity:.95}
 .needle circle{fill:var(--accent);stroke:#fff;stroke-width:5}
 [data-theme="light"] .needle path{fill:#0e437e}
@@ -249,7 +250,7 @@ section>.section-title,.werkstatt-head,.team-lede{max-width:var(--max)}
 @keyframes fade{from{opacity:0}}
 @keyframes spinin{from{opacity:0;transform:rotate(-40deg) scale(.92)}}
 @keyframes segon{from{opacity:.12}}
-@keyframes sweep{from{transform:rotate(-205deg)}}
+@keyframes sweep{from{--needle:-205deg}to{--needle:-24deg}}
 
 /* Responsive */
 @media (max-width:1080px){
