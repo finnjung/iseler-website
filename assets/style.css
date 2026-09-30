@@ -156,7 +156,7 @@ section>.section-title,.werkstatt-head,.team-lede{max-width:var(--max)}
 /* Team */
 .team{max-width:var(--max);margin:0 auto;padding:clamp(24px,4vw,48px) var(--gutter) clamp(72px,9vw,128px)}
 .team-lede{margin:16px 0 0;color:var(--text-2);max-width:36em}
-.tags{list-style:none;padding:0;margin:clamp(56px,6vw,88px) 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2.2vw,32px)}
+.tags{list-style:none;padding:0;margin:clamp(56px,6vw,88px) 0 0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(14px,1.8vw,28px)}
 .tag{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:40px 16px 20px;transform:rotate(var(--tilt));transform-origin:50% 0;transition:transform .6s cubic-bezier(.3,1.6,.5,1)}
 .tag:hover{transform:rotate(0deg)}
 .tag:before{content:"";position:absolute;top:13px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--bg);border:2px solid var(--line)}
@@ -257,7 +257,7 @@ section>.section-title,.werkstatt-head,.team-lede{max-width:var(--max)}
   .hero{grid-template-columns:1fr;min-height:0}
   .tacho{justify-self:center;max-width:460px}
   .story,.besuch{grid-template-columns:1fr}
-  .tags{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:56px}
+  .tags{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:56px}
   .bar nav{gap:18px}
 }
 @media (max-width:860px){.bar nav{display:none}.theme{margin-left:auto}}
@@ -271,7 +271,7 @@ section>.section-title,.werkstatt-head,.team-lede{max-width:var(--max)}
   .bento{grid-template-columns:1fr}
   .cell-big{grid-row:auto}
   .cell img,.cell-big img{aspect-ratio:3/2;height:auto;min-height:0;flex:none}
-  .tags{gap:14px;row-gap:48px}
+  .tags{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;row-gap:48px}
   .tag{padding:34px 10px 14px}
   .tag h3{font-size:17px}
   .tour-line{margin:84px 8px 56px}

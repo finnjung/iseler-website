@@ -1,5 +1,5 @@
 // WhatsApp-Nummer des Iseler-Bots im internationalen Format ohne "+" und ohne Leerzeichen,
-// z. B. '4961046237500'. Solange sie leer ist, laufen die WhatsApp-Elemente im Vorschau-Modus:
+// z. B. '496104670700'. Solange sie leer ist, laufen die WhatsApp-Elemente im Vorschau-Modus:
 // sichtbar, aber ein Klick erklärt nur, dass die Nummer noch folgt.
 const WHATSAPP_NUMBER = '496104670700'; // ISY Hotline 06104 670700, laut QR-Code auf Iselers Karte
 
