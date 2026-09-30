@@ -54,62 +54,6 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 })();
 
-// Teile-Anfrage: Fahrzeugschein-Formular baut eine fertige Nachricht
-(() => {
-  const form = document.getElementById('anfrage');
-  const hint = form.querySelector('.schein-hint');
-  const defaultHint = hint.textContent;
-  const fin = form.elements.fin;
-  const count = form.querySelector('.fin-count');
-
-  fin.addEventListener('input', () => {
-    fin.value = fin.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
-    count.textContent = `${fin.value.length} / 17`;
-  });
-  form.elements.hsn.addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, ''); });
-  form.elements.tsn.addEventListener('input', e => { e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ''); });
-  form.addEventListener('input', e => {
-    e.target.closest('.feld')?.classList.remove('bad');
-    if (hint.classList.contains('bad')) { hint.classList.remove('bad'); hint.textContent = defaultHint; }
-  });
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const v = n => form.elements[n].value.trim();
-    const hasCar = (v('hsn').length === 4 && v('tsn').length === 3) || v('fin').length === 17;
-    const bad = [];
-    if (!hasCar) bad.push('hsn', 'tsn', 'fin');
-    if (!v('teil')) bad.push('teil');
-    form.querySelectorAll('.feld').forEach(f => f.classList.remove('bad'));
-    if (bad.length) {
-      bad.forEach(n => form.elements[n].closest('.feld').classList.add('bad'));
-      hint.className = 'schein-hint bad';
-      hint.textContent = !hasCar
-        ? 'Bitte HSN und TSN (Zeile 2.1 und 2.2) oder die vollständige 17-stellige FIN (Zeile E) eintragen.'
-        : 'Bitte kurz beschreiben, welches Teil Sie brauchen.';
-      form.elements[bad[0]].focus();
-      return;
-    }
-    const lines = [
-      'Hallo Autoteile Iseler,', '', `ich suche: ${v('teil')}`, '',
-      `HSN (2.1): ${v('hsn') || '-'}`, `TSN (2.2): ${v('tsn') || '-'}`, `FIN (E): ${v('fin') || '-'}`, '',
-      `Name: ${v('name') || '-'}`, `Rückruf: ${v('tel') || '-'}`
-    ].join('\n');
-    if (e.submitter?.value === 'whatsapp' && !WHATSAPP_NUMBER) {
-      hint.className = 'schein-hint ok';
-      hint.textContent = 'Vorschau: Der WhatsApp-Versand wird freigeschaltet, sobald die Nummer eingetragen ist. Per E-Mail geht es schon.';
-      return;
-    }
-    const viaWa = e.submitter?.value === 'whatsapp';
-    if (viaWa) window.open(waLink(lines), '_blank', 'noopener');
-    else location.href = `mailto:info@iseler.de?subject=${encodeURIComponent(`Teile-Anfrage: ${v('teil')}`)}&body=${encodeURIComponent(lines)}`;
-    hint.className = 'schein-hint ok';
-    hint.textContent = viaWa
-      ? 'WhatsApp öffnet sich mit der fertigen Anfrage. Nur noch auf Senden tippen.'
-      : 'Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage. Nur noch auf Senden tippen.';
-  });
-})();
-
 // Tourenplan: Status der nächsten Werkstatt-Lieferung, Zeit in Europe/Berlin
 (() => {
   const status = document.getElementById('tour-status');

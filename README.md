@@ -12,7 +12,7 @@ Moderner Website-Entwurf für die **Autoteile Iseler GmbH** in Heusenstamm.
 ## Stand 30.09.2026 (abends): Taste-Skill-Überarbeitung
 Gebaut nach den Regeln von [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) (`design-taste-frontend`).
 - **Dark Mode ist Standard** (Leons Wunsch), Light Mode per Schalter oben rechts, Wahl bleibt im Browser gespeichert
-- Hero = Teile-Anfrage im Fahrzeugschein-Look (HSN 2.1, TSN 2.2, FIN E), sendet per WhatsApp oder E-Mail
+- Hero = Tacho aus dem Logo: Bremsscheibe als Tachoscheibe, gestrichelter Bogen blau/rot, Nadel läuft beim Laden in den roten Bereich. Claim „Schnell. Einfach. Direkt.“ stammt von Iselers eigenem WhatsApp-Bild. Das Fahrzeugschein-Formular ist raus (Finn gefiel es nicht).
 - **WhatsApp-Button unten rechts** mit dem Bot-Maskottchen von Leon, einmaliger Hinweis als Sprechblase.
   Nummer fehlt noch: `WHATSAPP_NUMBER` oben in `assets/app.js` eintragen. Solange leer, läuft ein Vorschau-Modus.
 - Live-Tourenplan für Werkstätten (Bestellschluss 8:45 / 12:30 von der alten Website, **bestätigen lassen**)
