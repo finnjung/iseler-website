@@ -14,7 +14,7 @@ Gebaut nach den Regeln von [Leonxlnx/taste-skill](https://github.com/Leonxlnx/ta
 - **Dark Mode ist Standard** (Leons Wunsch), Light Mode per Schalter oben rechts, Wahl bleibt im Browser gespeichert
 - Hero = Tacho aus dem Logo: Bremsscheibe als Tachoscheibe, gestrichelter Bogen blau/rot, Nadel läuft beim Laden in den roten Bereich. Claim „Schnell. Einfach. Direkt.“ stammt von Iselers eigenem WhatsApp-Bild. Das Fahrzeugschein-Formular ist raus (Finn gefiel es nicht).
 - **WhatsApp-Button unten rechts** mit dem Bot-Maskottchen von Leon, einmaliger Hinweis als Sprechblase.
-  Nummer fehlt noch: `WHATSAPP_NUMBER` oben in `assets/app.js` eintragen. Solange leer, läuft ein Vorschau-Modus.
+  Nummer eingetragen 30.09.: ISY Hotline 06104 670700 (`wa.me/496104670700`, per QR-Code auf Iselers Karte verifiziert), steht als `WHATSAPP_NUMBER` in `assets/app.js`.
 - Live-Tourenplan für Werkstätten (Bestellschluss 8:45 / 12:30 von der alten Website, **bestätigen lassen**)
 - Sortiment als Bento mit KI-generierten Produktfotos (codex, keine Marken sichtbar). Echte Fotos können sie später ersetzen.
 - Team-Etiketten mit Platzhaltern (Namen von der alten Website, **aktuell prüfen**), Ladenfront-Platzhalter
@@ -22,7 +22,7 @@ Gebaut nach den Regeln von [Leonxlnx/taste-skill](https://github.com/Leonxlnx/ta
   in `assets/fonts` / inline. Deshalb **kein Cookie-Banner nötig**. Datenschutzerklärung entsprechend neu.
 - OG-Bild `assets/img/og.jpg` (1200x630). Bei Umzug auf iseler.de die absoluten URLs in `index.html` (og:url, og:image, canonical) anpassen.
 - Shooting-Liste: 4 Porträts Hochformat 4:5, Ladenfront Querformat 3:2
-- Offen: WhatsApp-Nummer, Öffnungszeiten, Team/KS Tools bestätigen, endgültiger Hoster, Datenschutz rechtlich prüfen
+- Offen: Welches Maskottchen ist ISY (Karte zeigt jungen Typ mit Headset, Profilbild bärtigen Mechaniker)? Hauptnummer 62375 oder 670700? Öffnungszeiten, Team/KS Tools bestätigen, endgültiger Hoster, Datenschutz rechtlich prüfen
   (inkl. welcher Anbieter hinter dem WhatsApp-Bot steckt)
 
 ## Logo
