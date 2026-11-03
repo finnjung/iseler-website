@@ -25,6 +25,16 @@ Gebaut nach den Regeln von [Leonxlnx/taste-skill](https://github.com/Leonxlnx/ta
 - Offen: ISY-Maskottchen (auch bei Iseler noch unklar, vorerst bärtiger Mechaniker), Leons Rolle bestätigen. Telefon seit 30.09. überall 06104 670700 (Nummer von Leons Karte, alte 62375 ersetzt). Öffnungszeiten, Team/KS Tools bestätigen, endgültiger Hoster, Datenschutz rechtlich prüfen
   (inkl. welcher Anbieter hinter dem WhatsApp-Bot steckt)
 
+## Stand 03.11.2026: echte Fotos statt KI-Bilder
+Shooting 27.10.2026 (Mac mini: `Foto-Projekte/2026/27.10.2026 - iseler autoteile gmbh/edited`, erste Bearbeitungsrunde).
+- Hero: Foto vom Laden im Hintergrund (Leons Wunsch), Tacho/Bremsscheibe raus. Alle KI-Bilder gelöscht.
+- Sortiment nur noch Kfz-Ersatzteile, Öle und Chemie, Zubehör und Pflege. Werkzeug/Werkstattausrüstung/KS Tools komplett raus (Leon).
+- „Autoteile“ als Sortimentsbegriff heißt jetzt „Kfz-Ersatzteile“. Gründung 1978 (nicht 1979).
+- Team: Michael, Andre, Leon, Sandra Iseler (Buchhaltung, statt Ingrid), Melanie Seidewitz (Buchhaltung), Claus Mühl, Florian Schilling + Uwe Kaiser (Lager und Logistik). Überschrift allgemeiner („Unser Team“ statt „an der Theke“). Gruppenfoto vor dem Lieferwagen.
+- Familienfoto drei Generationen in der Geschichte („Familienbetrieb in 3. Generation“).
+- Öffnungszeiten Mo–Fr 8–19, Sa 8–13, So geschlossen (heutiger Tag hervorgehoben).
+- Offen: Porträts. Leon wählt auf https://finnjung.com/auswahl/iseler-2ce0d6a2/ pro Person die Fotos und ordnet die Namen zu (Ergebnis: `ssh dogado cat ~/finnjung-new/auswahl/iseler-2ce0d6a2/data/auswahl.json`). Bis dahin hat nur Leon ein Foto (A7306247).
+
 ## Logo
 Leon hat das neue Logo am 16.09.2026 per WhatsApp geschickt, nur als PNG (`assets/logo/original-leon-2026-09-16.png`). Am 30.09. mit potrace nach SVG vektorisiert, Farben exakt aus dem PNG:
 - `iseler-logo.svg`: Original mit Glanzkante (#0E437E / #2E5B8D, #E00018 / #E94758)

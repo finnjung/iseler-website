@@ -88,3 +88,10 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   tick();
   setInterval(tick, 30000);
 })();
+
+// Öffnungszeiten: heutigen Tag hervorheben
+(() => {
+  const wd = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Berlin', weekday: 'short' }).format(new Date()));
+  const row = document.querySelector(`.hours [data-day="${wd}"]`);
+  if (row) row.classList.add('today');
+})();
