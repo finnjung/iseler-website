@@ -236,10 +236,7 @@ section>.section-title,.werkstatt-head,.team-lede{max-width:var(--max)}
 .ein{margin:0;display:flex;flex-direction:column}
 .ein img{display:block;width:100%;height:100%;min-height:0;aspect-ratio:3/2;object-fit:cover;border-radius:var(--r);border:1px solid var(--line)}
 .ein figcaption{margin-top:10px;font-size:14px;color:var(--text-3)}
-.ein-wide{grid-column:span 2;grid-row:span 2}
-.ein-wide img{aspect-ratio:auto;flex:1}
-.ein img[src*="michael"]{object-position:50% 25%}
-@media (max-width:760px){.ein-grid{grid-template-columns:1fr}.ein-wide{grid-column:auto;grid-row:auto}.ein-wide img{aspect-ratio:3/2;flex:none}}
+@media (max-width:760px){.ein-grid{grid-template-columns:1fr}}
 
 @media (prefers-reduced-motion:no-preference){
   .hero h1{animation:rise .9s var(--ease) both}
