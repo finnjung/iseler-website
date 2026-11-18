@@ -6,7 +6,11 @@ backend:
   name: github
   repo: finnjung/iseler-website
   branch: main
+  # Eigener Login (Benutzername + Passwort) statt GitHub-Konto, siehe cms-auth/README.md.
+  # Alle API-Aufrufe laufen über den Worker, der nur dieses Repo freigibt.
   base_url: https://iseler-cms-auth.finnjung02.workers.dev
+  api_root: https://iseler-cms-auth.finnjung02.workers.dev
+  graphql_api_root: https://iseler-cms-auth.finnjung02.workers.dev/api/graphql
   commit_messages:
     create: "Inhalt: {{collection}} „{{slug}}“ angelegt"
     update: "Inhalt: {{collection}} „{{slug}}“ geändert"

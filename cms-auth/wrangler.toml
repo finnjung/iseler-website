@@ -4,4 +4,13 @@ compatibility_date = "2026-11-01"
 workers_dev = true
 
 [vars]
-ALLOWED_DOMAINS = "finnjung.github.io, iseler.de, www.iseler.de, localhost"
+APP_ID = "5819512"
+INSTALLATION_ID = ""
+REPO = "finnjung/iseler-website"
+ALLOWED_ORIGINS = "https://finnjung.github.io,https://iseler.de,https://www.iseler.de,http://localhost:8080"
+
+# 10 Login-Versuche pro Minute und IP
+[[ratelimits]]
+name = "LOGIN_LIMIT"
+namespace_id = "1001"
+simple = { limit = 10, period = 60 }

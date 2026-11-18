@@ -12,8 +12,9 @@ Moderner Website-Entwurf für die **Autoteile Iseler GmbH** in Heusenstamm.
 
 ### Editor für Leon: `/admin`
 - Sveltia CMS 0.258.1 (von unpkg, mit SRI-Hash festgenagelt), Konfiguration `src/admin/config.yml`.
-- Login über GitHub. Auth-Worker: Cloudflare Worker `iseler-cms-auth` (https://iseler-cms-auth.finnjung02.workers.dev, Code = sveltia/sveltia-cms-auth, `ALLOWED_DOMAINS` gesetzt).
-- GitHub App „Iseler Website Editor“ (nur auf diesem Repo installiert, Recht nur Contents lesen/schreiben, keine Workflows). Wer bearbeiten darf, ist Collaborator im Repo.
+- Eigener Login (Benutzername + Passwort, kein GitHub-Konto nötig) über den Cloudflare Worker `iseler-cms-auth` (Code in `cms-auth/`, Details dort im README). Der Worker leitet nur Aufrufe für dieses Repo an GitHub weiter.
+- GitHub App „Iseler Website Editor“ (App-ID 5819512, nur auf diesem Repo installiert, Recht nur Contents lesen/schreiben, keine Workflows). Commits erscheinen als `iseler-website-editor[bot]`.
+- Leons Passwort: macOS-Schlüsselbund, Dienst `iseler-website-editor`, Konto `leon`.
 - Jede Änderung im Editor ist ein Commit; rückgängig machen per `git revert` oder in GitHub.
 - Hochgeladene Fotos rechnet der Editor vor dem Hochladen auf max. 2400 px WebP herunter.
 
