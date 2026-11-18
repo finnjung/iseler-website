@@ -1,0 +1,32 @@
+{
+  "bereiche": [
+    {
+      "bereich": "ticker",
+      "anzeigen": true
+    },
+    {
+      "bereich": "werkstatt",
+      "anzeigen": true
+    },
+    {
+      "bereich": "sortiment",
+      "anzeigen": true
+    },
+    {
+      "bereich": "team",
+      "anzeigen": true
+    },
+    {
+      "bereich": "geschichte",
+      "anzeigen": true
+    },
+    {
+      "bereich": "einblicke",
+      "anzeigen": true
+    },
+    {
+      "bereich": "besuch",
+      "anzeigen": true
+    }
+  ]
+}

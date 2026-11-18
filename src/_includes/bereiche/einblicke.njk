@@ -1,0 +1,11 @@
+{% if einblicke.bilder | length %}
+<section class="einblicke" id="einblicke">
+  <h2 class="section-title">{{ einblicke.titel }}</h2>
+  {% if einblicke.text %}<p class="team-lede">{{ einblicke.text }}</p>{% endif %}
+  <div class="ein-grid">
+    {%- for b in einblicke.bilder %}
+    <figure class="ein"><img src="{{ b.bild }}" sizes="(max-width:760px) 100vw, 33vw" alt="{{ b.bild_beschreibung }}">{% if b.text %}<figcaption>{{ b.text }}</figcaption>{% endif %}</figure>
+    {%- endfor %}
+  </div>
+</section>
+{% endif %}

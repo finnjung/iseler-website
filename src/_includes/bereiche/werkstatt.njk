@@ -1,0 +1,21 @@
+<section class="werkstatt" id="werkstatt">
+  <div class="werkstatt-head">
+    <h2 class="section-title">{{ werkstatt.titel }}</h2>
+    {% if werkstatt.text %}<p>{{ werkstatt.text }}</p>{% endif %}
+  </div>
+
+  <div class="tour" aria-live="polite" data-schluss1="{{ werkstatt.tour1_schluss | minuten }}" data-schluss2="{{ werkstatt.tour2_schluss | minuten }}">
+    <p class="tour-now"><span class="tour-dot" aria-hidden="true"></span><span id="tour-clock">--:--</span> Uhr in Heusenstamm</p>
+    <p class="tour-status" id="tour-status">Nächste Tour wird berechnet.</p>
+    <div class="tour-line" aria-hidden="true">
+      <div class="tour-cut" data-at="{{ werkstatt.tour1_schluss | minuten }}"><b>{{ werkstatt.tour1_schluss | uhrzeit }}</b><span>{{ werkstatt.tour1_name }}</span></div>
+      <div class="tour-cut" data-at="{{ werkstatt.tour2_schluss | minuten }}"><b>{{ werkstatt.tour2_schluss | uhrzeit }}</b><span>{{ werkstatt.tour2_name }}</span></div>
+      <div class="tour-mark" id="tour-mark">{{ icon("lieferwagen") }}</div>
+      <div class="tour-scale"><span>7</span><span>9</span><span>11</span><span>13</span><span>15</span><span>17</span></div>
+    </div>
+    <div class="tour-foot">
+      <a class="btn btn-red" href="tel:{{ telLink }}">{{ icon("telefon") }}{{ werkstatt.button }}</a>
+      {% if werkstatt.hinweis %}<p class="tour-note">{{ werkstatt.hinweis }}</p>{% endif %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,8 @@
+---
+permalink: datenschutz.html
+layout: rechtlich.njk
+titel: Datenschutzerklärung
+eleventyComputed:
+  zeile: "{{ rechtliches.datenschutz.stand }}"
+---
+{{ rechtliches.datenschutz.text | markdown | safe }}

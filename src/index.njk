@@ -1,0 +1,84 @@
+---
+permalink: index.html
+---
+{%- from "icons.njk" import icon -%}
+{%- set telLink = firma.telefon | tel -%}
+{%- set menue = { werkstatt: werkstatt.menue, sortiment: sortiment.menue, team: team.menue, besuch: besuch.menue } -%}
+<!doctype html>
+<html lang="de" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>{{ seo.titel }}</title>
+<meta name="description" content="{{ seo.beschreibung }}">
+<meta name="theme-color" content="#0a111e">
+<meta property="og:title" content="{{ seo.teilen_titel }}">
+<meta property="og:description" content="{{ seo.teilen_text }}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:url" content="{{ firma.adresse_url }}">
+<meta property="og:image" content="{{ 'assets/img/og.jpg' | absolut(firma.adresse_url) }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ team.gruppenfoto_beschreibung }}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="{{ firma.adresse_url }}">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23e00018'/%3E%3Cpath d='M13 7h6v18h-6z' fill='white'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/archivo-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('iseler-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}
+if(document.documentElement.dataset.theme==='light')document.querySelector('meta[name=theme-color]').content='#eef0f3'</script>
+<link rel="stylesheet" href="assets/style.css?v=10">
+<script type="application/ld+json">{{ {
+  "@context": "https://schema.org", "@type": "AutoPartsStore", "name": firma.name,
+  "telephone": telLink, "email": firma.email, "foundingDate": firma.gruendung,
+  "address": { "@type": "PostalAddress", "streetAddress": firma.strasse, "postalCode": firma.plz, "addressLocality": firma.ort, "addressCountry": "DE" }
+} | dump | safe }}</script>
+</head>
+<body data-wa-nummer="{{ firma.whatsapp | wa }}" data-wa-text="{{ isy.vorgabe_nachricht }}">
+<a class="skip" href="#inhalt">Zum Inhalt springen</a>
+
+<header class="bar">
+  <a class="mark" href="#top" aria-label="{{ firma.name }}, zur Startseite">
+    <img eleventy:ignore class="logo logo-dark" src="assets/logo/iseler-logo-negativ.svg" alt="Autoteile Iseler" width="3029" height="1369">
+    <img eleventy:ignore class="logo logo-light" src="assets/logo/iseler-logo.svg" alt="Autoteile Iseler" width="3029" height="1369">
+  </a>
+  <nav aria-label="Hauptnavigation">
+    {%- for b in aufbau.bereiche %}{% if b.anzeigen and menue[b.bereich] %}
+    <a href="#{{ b.bereich }}">{{ menue[b.bereich] }}</a>
+    {%- endif %}{% endfor %}
+  </nav>
+  <button class="theme" type="button" aria-label="Helles Design einschalten" data-theme-toggle>
+    <span class="i-sun">{{ icon("sonne") }}</span><span class="i-moon">{{ icon("mond") }}</span>
+  </button>
+  <a class="bar-call" href="tel:{{ telLink }}">{{ icon("telefon") }}<span>{{ firma.telefon }}</span></a>
+</header>
+
+<main id="top">
+{% include "bereiche/start.njk" %}
+<div id="inhalt"></div>
+{%- for b in aufbau.bereiche %}{% if b.anzeigen %}
+{% include "bereiche/" + b.bereich + ".njk" %}
+{%- endif %}{% endfor %}
+</main>
+
+<footer class="foot">
+  <img eleventy:ignore class="foot-logo logo-dark" src="assets/logo/iseler-logo-weiss.svg" alt="Autoteile Iseler" width="3029" height="1369" loading="lazy">
+  <img eleventy:ignore class="foot-logo logo-light" src="assets/logo/iseler-logo.svg" alt="Autoteile Iseler" width="3029" height="1369" loading="lazy">
+  <p>{{ firma.name }}, {{ firma.strasse }}, {{ firma.plz }} {{ firma.ort }}</p>
+  <nav aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav>
+</footer>
+
+<div class="wa" data-wa>
+  <div class="wa-bubble" hidden>
+    <button class="wa-close" type="button" aria-label="Hinweis schließen">{{ icon("schliessen") }}</button>
+    <p><strong>{{ isy.hinweis_titel }}</strong> {{ isy.hinweis_text }}</p>
+  </div>
+  <a class="wa-fab" href="#" data-wa-link data-needs-wa aria-label="ISY per WhatsApp fragen">
+    <img eleventy:ignore src="assets/img/whatsapp-avatar.webp" alt="" width="96" height="96">
+    <span class="wa-badge">{{ icon("whatsapp") }}</span>
+  </a>
+</div>
+
+<script src="assets/app.js?v=8"></script>
+</body>
+</html>

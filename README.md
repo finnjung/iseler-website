@@ -2,6 +2,21 @@
 
 Moderner Website-Entwurf für die **Autoteile Iseler GmbH** in Heusenstamm.
 
+## Aufbau seit 18.11.2026: Eleventy + Editor
+- Inhalte liegen als JSON in `src/_data/` (ein File je Bereich), Vorlagen in `src/index.njk` und `src/_includes/bereiche/`.
+- Bauen: `npm ci && npm run build` → `_site/`. Lokal ansehen: `npm start`.
+- Bilder: Originale in `src/assets/bilder/`, beim Bauen macht `@11ty/eleventy-img` WebP in 800/1600/2400 px mit srcset (`_site/img/`).
+- Reihenfolge und Sichtbarkeit der Bereiche: `src/_data/aufbau.json`.
+- GitHub Actions (`.github/workflows/deploy-pages.yml`) baut bei jedem Push auf `main` und veröffentlicht auf GitHub Pages.
+- Texte werden automatisch HTML-escaped, Datenschutz ist Markdown ohne HTML.
+
+### Editor für Leon: `/admin`
+- Sveltia CMS 0.258.1 (von unpkg, mit SRI-Hash festgenagelt), Konfiguration `src/admin/config.yml`.
+- Login über GitHub. Auth-Worker: Cloudflare Worker `iseler-cms-auth` (https://iseler-cms-auth.finnjung02.workers.dev, Code = sveltia/sveltia-cms-auth, `ALLOWED_DOMAINS` gesetzt).
+- GitHub App „Iseler Website Editor“ (nur auf diesem Repo installiert, Recht nur Contents lesen/schreiben, keine Workflows). Wer bearbeiten darf, ist Collaborator im Repo.
+- Jede Änderung im Editor ist ein Commit; rückgängig machen per `git revert` oder in GitHub.
+- Hochgeladene Fotos rechnet der Editor vor dem Hochladen auf max. 2400 px WebP herunter.
+
 ## Aktueller Stand
 - SEO-Grundlagen, responsive One-Page-Architektur, Light-/Dark-Mode und dezente Animationen
 - Öffentlich verifizierte Stammdaten und Unternehmensgeschichte aus der bestehenden Website übernommen (September 2026)

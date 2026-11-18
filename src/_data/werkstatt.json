@@ -1,0 +1,11 @@
+{
+  "menue": "Für Werkstätten",
+  "titel": "Für Werkstätten: zwei Touren am Tag.",
+  "text": "Bis 8:45 Uhr bestellt, am Vormittag geliefert. Bis 12:30 Uhr bestellt, am Nachmittag.",
+  "tour1_schluss": "08:45",
+  "tour1_name": "Vormittagstour",
+  "tour2_schluss": "12:30",
+  "tour2_name": "Nachmittagstour",
+  "button": "Kundenkonto anfragen",
+  "hinweis": "Bestellschluss laut bisheriger Website, wird vor dem Start bestätigt."
+}

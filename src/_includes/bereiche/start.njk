@@ -1,0 +1,12 @@
+<section class="hero">
+  <div class="hero-bg"><img src="{{ start.bild }}" sizes="100vw" alt="" loading="eager" fetchpriority="high"></div>
+  <div class="hero-text">
+    {% if start.kicker %}<p class="kicker">{{ start.kicker }}</p>{% endif %}
+    <h1>{{ start.titel }}</h1>
+    {% if start.text %}<p class="hero-lede">{{ start.text }}</p>{% endif %}
+    <div class="hero-cta">
+      <a class="btn btn-wa" href="#" data-wa-link>{{ icon("whatsapp") }}{{ start.button_whatsapp }}</a>
+      <a class="btn btn-line" href="tel:{{ telLink }}">{{ icon("telefon") }}{{ firma.telefon }}</a>
+    </div>
+  </div>
+</section>

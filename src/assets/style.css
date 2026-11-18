@@ -49,6 +49,7 @@ html{background:var(--bg);overflow-x:clip;scroll-behavior:smooth;-webkit-text-si
 body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 Archivo,system-ui,sans-serif;overflow-x:hidden;overflow-x:clip;transition:background .3s,color .3s}
 a{color:inherit}
 img,svg{display:block;max-width:100%}
+img{height:auto}
 svg{width:1.15em;height:1.15em;flex:none}
 :focus-visible{outline:3px solid var(--accent-text);outline-offset:3px;border-radius:4px}
 .skip{position:absolute;left:-999px;top:8px;background:var(--text);color:var(--bg);padding:10px 14px;z-index:40}
@@ -135,7 +136,7 @@ section>.section-title,.werkstatt-head,.team-lede{max-width:var(--max)}
 .cell{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
 .cell-big{grid-row:1/3}
 .cell img{width:100%;aspect-ratio:3/2;object-fit:cover;transition:transform 1.2s var(--ease)}
-.cell-big img{flex:1;aspect-ratio:auto;min-height:320px}
+.cell-big img{flex:1 1 0;height:0;aspect-ratio:auto;min-height:320px}
 .cell:hover img{transform:scale(1.035)}
 .cell-text{padding:22px 24px 26px}
 .cell h3{margin:0 0 6px;font:800 24px/1.1 Archivo,sans-serif;font-stretch:105%}

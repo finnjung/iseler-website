@@ -1,0 +1,15 @@
+<section class="story" id="geschichte">
+  {% if geschichte.bild %}<figure class="shot">
+    <img src="{{ geschichte.bild }}" sizes="(max-width:1080px) 100vw, 55vw" alt="{{ geschichte.bild_beschreibung }}">
+    {% if geschichte.bild_text %}<figcaption>{{ geschichte.bild_text }}</figcaption>{% endif %}
+  </figure>{% endif %}
+  <div class="story-copy">
+    {% if geschichte.kicker %}<p class="kicker">{{ geschichte.kicker }}</p>{% endif %}
+    <h2 class="section-title">{{ geschichte.titel }}</h2>
+    <ol class="years">
+      {%- for j in geschichte.jahre %}
+      <li><b>{{ j.jahr }}</b><span>{{ j.text }}</span></li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>

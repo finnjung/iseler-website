@@ -1,0 +1,20 @@
+<section class="besuch" id="besuch">
+  <div class="besuch-copy">
+    <h2 class="section-title">{{ besuch.titel }}</h2>
+    <address>{{ firma.name }}<br>{{ firma.strasse }}<br>{{ firma.plz }} {{ firma.ort }}</address>
+    <div class="besuch-links">
+      <a class="big-link" href="tel:{{ telLink }}">{{ icon("telefon") }}<span><small>Telefon</small>{{ firma.telefon }}</span></a>
+      <a class="big-link" href="mailto:{{ firma.email }}">{{ icon("mail") }}<span><small>E-Mail</small>{{ firma.email }}</span></a>
+      <a class="big-link" href="#" data-wa-link data-needs-wa>{{ icon("whatsapp") }}<span><small>WhatsApp (ISY)</small>{{ firma.whatsapp }}</span></a>
+    </div>
+    <a class="btn btn-line" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query={{ (firma.name + ' ' + firma.strasse + ' ' + firma.plz + ' ' + firma.ort) | urlencode }}">{{ icon("route") }}Route planen</a>
+  </div>
+  <div class="hours">
+    <h3>{{ icon("uhr") }}Öffnungszeiten</h3>
+    <dl>
+      {%- for o in besuch.oeffnungszeiten %}
+      <div{% if o.geschlossen %} class="closed"{% endif %} data-day="{{ o.tag | tagnummer }}"><dt>{{ o.tag }}</dt><dd>{% if o.geschlossen %}geschlossen{% else %}{{ o.zeit }}{% endif %}</dd></div>
+      {%- endfor %}
+    </dl>
+  </div>
+</section>

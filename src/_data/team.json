@@ -1,0 +1,49 @@
+{
+  "menue": "Team",
+  "titel": "Unser Team",
+  "text": "Von der Beratung über das Lager bis zur Buchhaltung: Bei uns kennen Sie die Menschen, die sich um Ihre Teile kümmern.",
+  "gruppenfoto": "assets/bilder/team-gruppe-wand.webp",
+  "gruppenfoto_beschreibung": "Das Team von Autoteile Iseler vor dem Lieferwagen",
+  "personen": [
+    {
+      "name": "Michael Iseler",
+      "rolle": "Geschäftsführung",
+      "foto": "assets/bilder/team-michael-v2.webp"
+    },
+    {
+      "name": "Andre Iseler",
+      "rolle": "Geschäftsführung",
+      "foto": "assets/bilder/team-andre-v2.webp"
+    },
+    {
+      "name": "Leon Iseler",
+      "rolle": "Stellv. Geschäftsführung",
+      "foto": "assets/bilder/team-leon-v2.webp"
+    },
+    {
+      "name": "Sandra Iseler",
+      "rolle": "Buchhaltung",
+      "foto": "assets/bilder/team-sandra-v2.webp"
+    },
+    {
+      "name": "Melanie Seidewitz",
+      "rolle": "Buchhaltung",
+      "foto": "assets/bilder/team-melanie-v2.webp"
+    },
+    {
+      "name": "Claus Mühl",
+      "rolle": "Verkaufsberatung",
+      "foto": "assets/bilder/team-claus-v2.webp"
+    },
+    {
+      "name": "Florian Schilling",
+      "rolle": "Lager und Logistik",
+      "foto": "assets/bilder/team-florian-v2.webp"
+    },
+    {
+      "name": "Uwe Kaiser",
+      "rolle": "Lager und Logistik",
+      "foto": "assets/bilder/team-uwe-v2.webp"
+    }
+  ]
+}

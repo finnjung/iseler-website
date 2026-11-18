@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="de" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0a111e">
+<title>{{ titel }} | Autoteile Iseler</title>
+<script>try{var t=localStorage.getItem('iseler-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}
+if(document.documentElement.dataset.theme==='light')document.querySelector('meta[name=theme-color]').content='#eef0f3'</script>
+<link rel="stylesheet" href="assets/legal.css?v=7">
+</head>
+<body>
+<main>
+<a class="back" href="index.html">Zurück zur Startseite</a>
+<p class="state">{{ zeile }}</p>
+<h1>{{ titel }}</h1>
+<section>{{ content | safe }}</section>
+</main>
+</body>
+</html>

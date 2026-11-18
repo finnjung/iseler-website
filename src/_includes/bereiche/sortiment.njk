@@ -1,0 +1,14 @@
+<section class="sortiment" id="sortiment">
+  <h2 class="section-title">{{ sortiment.titel }}</h2>
+  <div class="bento">
+    {%- for e in sortiment.eintraege %}
+    <article class="cell{% if loop.first %} cell-big{% endif %}">
+      {% if e.bild %}<img src="{{ e.bild }}" sizes="{% if loop.first %}(max-width:760px) 100vw, 60vw{% else %}(max-width:760px) 100vw, 40vw{% endif %}" alt="{{ e.bild_beschreibung }}">{% endif %}
+      <div class="cell-text">
+        <h3>{{ e.titel }}</h3>
+        {% if e.text %}<p>{{ e.text }}</p>{% endif %}
+      </div>
+    </article>
+    {%- endfor %}
+  </div>
+</section>

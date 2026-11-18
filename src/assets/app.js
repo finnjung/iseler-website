@@ -1,7 +1,7 @@
-// WhatsApp-Nummer des Iseler-Bots im internationalen Format ohne "+" und ohne Leerzeichen,
-// z. B. '496104670700'. Solange sie leer ist, laufen die WhatsApp-Elemente im Vorschau-Modus:
-// sichtbar, aber ein Klick erklärt nur, dass die Nummer noch folgt.
-const WHATSAPP_NUMBER = '496104670700'; // ISY Hotline 06104 670700, laut QR-Code auf Iselers Karte
+// WhatsApp-Nummer und Vorgabetext kommen aus dem CMS (Firmendaten / ISY) über data-Attribute am <body>.
+// Ist keine Nummer eingetragen, laufen die WhatsApp-Elemente im Vorschau-Modus.
+const WHATSAPP_NUMBER = document.body.dataset.waNummer || '';
+const WHATSAPP_TEXT = document.body.dataset.waText || '';
 
 const store = {
   get: k => { try { return localStorage.getItem(k); } catch { return null; } },
@@ -40,7 +40,7 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
     return;
   }
   document.querySelectorAll('a[data-wa-link]').forEach(a => {
-    a.href = waLink('Hallo ISY, ich suche ein Teil für mein Auto.');
+    a.href = waLink(WHATSAPP_TEXT);
     a.target = '_blank';
     a.rel = 'noopener';
   });
@@ -57,9 +57,12 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 // Tourenplan: Status der nächsten Werkstatt-Lieferung, Zeit in Europe/Berlin
 (() => {
   const status = document.getElementById('tour-status');
+  if (!status) return;
   const clock = document.getElementById('tour-clock');
   const mark = document.getElementById('tour-mark');
-  const START = 7 * 60, END = 18 * 60, CUT1 = 8 * 60 + 45, CUT2 = 12 * 60 + 30;
+  const tour = document.querySelector('.tour');
+  if (!tour) return;
+  const START = 7 * 60, END = 18 * 60, CUT1 = +tour.dataset.schluss1 || 525, CUT2 = +tour.dataset.schluss2 || 750;
   const pos = m => Math.min(100, Math.max(0, (m - START) / (END - START) * 100)) + '%';
 
   document.querySelectorAll('.tour-scale span').forEach(s => { s.style.left = pos(+s.textContent * 60); });

@@ -1,0 +1,11 @@
+{%- set tilts = ["-2deg", "1.5deg", "-1.5deg", "1deg", "-1deg", "2deg", "-1.5deg", "1.5deg"] -%}
+<section class="team" id="team">
+  <h2 class="section-title">{{ team.titel }}</h2>
+  {% if team.text %}<p class="team-lede">{{ team.text }}</p>{% endif %}
+  {% if team.gruppenfoto %}<figure class="team-group"><img src="{{ team.gruppenfoto }}" sizes="(max-width:1280px) 100vw, 1200px" alt="{{ team.gruppenfoto_beschreibung }}"></figure>{% endif %}
+  <ul class="tags">
+    {%- for p in team.personen %}
+    <li class="tag" style="--tilt:{{ tilts[loop.index0 % 8] }}"><div class="tag-photo{% if p.foto %} has-img{% endif %}">{% if p.foto %}<img src="{{ p.foto }}" sizes="(max-width:760px) 50vw, 25vw" alt="{{ p.name }}">{% endif %}</div><h3>{{ p.name }}</h3>{% if p.rolle %}<p>{{ p.rolle }}</p>{% endif %}</li>
+    {%- endfor %}
+  </ul>
+</section>

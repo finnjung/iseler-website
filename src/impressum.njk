@@ -1,0 +1,13 @@
+---
+permalink: impressum.html
+layout: rechtlich.njk
+titel: Impressum
+zeile: Rechtliche Angaben
+---
+{%- set i = rechtliches.impressum -%}
+<h2>Angaben gemäß § 5 DDG</h2><p><strong>{{ firma.name }}</strong><br>{{ firma.strasse }}<br>{{ firma.plz }} {{ firma.ort }}<br>Deutschland</p>
+<h2>Vertreten durch</h2><p>Geschäftsführer: {{ i.geschaeftsfuehrer }}</p>
+<h2>Kontakt</h2><p>Telefon: <a href="tel:{{ firma.telefon | tel }}">{{ firma.telefon }}</a>{% if firma.fax %}<br>Fax: {{ firma.fax }}{% endif %}<br>E-Mail: <a href="mailto:{{ firma.email }}">{{ firma.email }}</a></p>
+<h2>Registereintrag</h2><p>{{ i.registergericht }}<br>{{ i.register }}</p>
+<h2>Umsatzsteuer-ID</h2><p>{{ i.ustid }}</p>
+{% if i.hinweis %}<h2>Hinweis zur Prüfung</h2><p>{{ i.hinweis }}</p>{% endif %}

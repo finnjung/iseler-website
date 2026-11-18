@@ -1,0 +1,21 @@
+{
+  "kicker": "Familienbetrieb in 3. Generation",
+  "titel": "Seit 1978 in Familienhand",
+  "bild": "assets/bilder/familie-v2.webp",
+  "bild_beschreibung": "Drei Generationen Iseler nebeneinander im Laden",
+  "bild_text": "Drei Generationen Iseler im Laden im Weiskircher Weg.",
+  "jahre": [
+    {
+      "jahr": "1978",
+      "text": "Gründung von Autoteile Iseler in der Hohebergstraße 3 in Heusenstamm."
+    },
+    {
+      "jahr": "2004",
+      "text": "Umzug in die größeren Geschäftsräume im Weiskircher Weg 18."
+    },
+    {
+      "jahr": "Heute",
+      "text": "Fachhandel für Privatkunden und Werkstätten, geführt in dritter Generation. Mitglied im Heusenstammer Gewerbeverein."
+    }
+  ]
+}

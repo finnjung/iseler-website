@@ -1,0 +1,269 @@
+# Editor für die Website von Autoteile Iseler (Sveltia CMS)
+# Jede Änderung wird als Commit im GitHub-Repo gespeichert und lässt sich zurückdrehen.
+# Nach dem Speichern baut GitHub Actions die Seite neu (dauert ca. 1–2 Minuten).
+
+backend:
+  name: github
+  repo: finnjung/iseler-website
+  branch: main
+  base_url: https://iseler-cms-auth.finnjung02.workers.dev
+  commit_messages:
+    create: "Inhalt: {{collection}} „{{slug}}“ angelegt"
+    update: "Inhalt: {{collection}} „{{slug}}“ geändert"
+    delete: "Inhalt: {{collection}} „{{slug}}“ gelöscht"
+    uploadMedia: "Bild hochgeladen: {{path}}"
+    deleteMedia: "Bild gelöscht: {{path}}"
+
+site_url: https://finnjung.github.io/iseler-website/
+display_url: https://finnjung.github.io/iseler-website/
+logo_url: ../assets/logo/iseler-logo.svg
+
+media_folder: src/assets/bilder
+public_folder: assets/bilder
+
+media_libraries:
+  default:
+    config:
+      max_file_size: 30000000
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          width: 2400
+          height: 2400
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  - name: seite
+    label: Startseite
+    description: Alle Texte, Bilder und Bereiche der Website.
+    editor:
+      preview: false
+    files:
+      - name: aufbau
+        label: "Aufbau: Reihenfolge der Bereiche"
+        file: src/_data/aufbau.json
+        format: json
+        fields:
+          - name: bereiche
+            label: Bereiche
+            label_singular: Bereich
+            hint: Per Ziehen die Reihenfolge ändern. Mit „Anzeigen“ blendest du einen Bereich aus, ohne ihn zu löschen. Das große Startbild steht immer oben.
+            widget: list
+            allow_add: false
+            allow_remove: false
+            summary: "{{bereich}}"
+            fields:
+              - name: bereich
+                label: Bereich
+                widget: select
+                readonly: true
+                options:
+                  - { label: Laufband mit Stichworten, value: ticker }
+                  - { label: Für Werkstätten (Touren), value: werkstatt }
+                  - { label: Sortiment, value: sortiment }
+                  - { label: Team, value: team }
+                  - { label: Geschichte, value: geschichte }
+                  - { label: Einblicke (Bilder), value: einblicke }
+                  - { label: Besuch & Öffnungszeiten, value: besuch }
+              - { name: anzeigen, label: Anzeigen, widget: boolean, default: true }
+
+      - name: start
+        label: Startbild & Überschrift
+        file: src/_data/start.json
+        format: json
+        fields:
+          - { name: bild, label: Hintergrundbild, widget: image, choose_url: false, hint: Querformat, wird dunkel abgedeckt }
+          - { name: kicker, label: Kleine Zeile über der Überschrift, widget: string, required: false }
+          - { name: titel, label: Überschrift, widget: string }
+          - { name: text, label: Text darunter, widget: text, required: false }
+          - { name: button_whatsapp, label: Beschriftung WhatsApp-Knopf, widget: string }
+
+      - name: ticker
+        label: Laufband
+        file: src/_data/ticker.json
+        format: json
+        fields:
+          - name: begriffe
+            label: Stichworte
+            label_singular: Stichwort
+            widget: list
+            field: { name: begriff, label: Stichwort, widget: string }
+
+      - name: werkstatt
+        label: Für Werkstätten
+        file: src/_data/werkstatt.json
+        format: json
+        fields:
+          - { name: menue, label: Name im Menü oben, widget: string }
+          - { name: titel, label: Überschrift, widget: string }
+          - { name: text, label: Text, widget: text, required: false }
+          - { name: tour1_name, label: "Tour 1: Name", widget: string }
+          - { name: tour1_schluss, label: "Tour 1: Bestellschluss (z. B. 08:45)", widget: string, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', "Bitte als SS:MM, z. B. 08:45"] }
+          - { name: tour2_name, label: "Tour 2: Name", widget: string }
+          - { name: tour2_schluss, label: "Tour 2: Bestellschluss (z. B. 12:30)", widget: string, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', "Bitte als SS:MM, z. B. 12:30"] }
+          - { name: button, label: Beschriftung Knopf (ruft an), widget: string }
+          - { name: hinweis, label: Kleiner Hinweis neben dem Knopf, widget: string, required: false }
+
+      - name: sortiment
+        label: Sortiment
+        file: src/_data/sortiment.json
+        format: json
+        fields:
+          - { name: menue, label: Name im Menü oben, widget: string }
+          - { name: titel, label: Überschrift, widget: string }
+          - name: eintraege
+            label: Kacheln
+            label_singular: Kachel
+            hint: Die erste Kachel wird groß links angezeigt. Am besten 3 Kacheln.
+            widget: list
+            summary: "{{titel}}"
+            fields:
+              - { name: titel, label: Titel, widget: string }
+              - { name: text, label: Text, widget: text, required: false }
+              - { name: bild, label: Bild, widget: image, choose_url: false, required: false }
+              - { name: bild_beschreibung, label: "Bildbeschreibung (für Google und Blinde)", widget: string, required: false }
+
+      - name: team
+        label: Team
+        file: src/_data/team.json
+        format: json
+        fields:
+          - { name: menue, label: Name im Menü oben, widget: string }
+          - { name: titel, label: Überschrift, widget: string }
+          - { name: text, label: Text, widget: text, required: false }
+          - { name: gruppenfoto, label: Gruppenfoto, widget: image, choose_url: false, required: false }
+          - { name: gruppenfoto_beschreibung, label: Beschreibung Gruppenfoto, widget: string, required: false }
+          - name: personen
+            label: Personen
+            label_singular: Person
+            hint: Reihenfolge per Ziehen ändern. Fotos am besten im Hochformat 4:5.
+            widget: list
+            summary: "{{name}} ({{rolle}})"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: rolle, label: Aufgabe, widget: string, required: false }
+              - { name: foto, label: Foto, widget: image, choose_url: false, required: false }
+
+      - name: geschichte
+        label: Geschichte
+        file: src/_data/geschichte.json
+        format: json
+        fields:
+          - { name: kicker, label: Kleine Zeile über der Überschrift, widget: string, required: false }
+          - { name: titel, label: Überschrift, widget: string }
+          - { name: bild, label: Bild, widget: image, choose_url: false, required: false }
+          - { name: bild_beschreibung, label: Bildbeschreibung, widget: string, required: false }
+          - { name: bild_text, label: Bildunterschrift, widget: string, required: false }
+          - name: jahre
+            label: Zeitleiste
+            label_singular: Eintrag
+            widget: list
+            summary: "{{jahr}}"
+            fields:
+              - { name: jahr, label: Jahr, widget: string }
+              - { name: text, label: Text, widget: text }
+
+      - name: einblicke
+        label: Einblicke (Bilder)
+        file: src/_data/einblicke.json
+        format: json
+        fields:
+          - { name: titel, label: Überschrift, widget: string }
+          - { name: text, label: Text, widget: text, required: false }
+          - name: bilder
+            label: Bilder
+            label_singular: Bild
+            hint: Drei pro Reihe sehen am besten aus (3 oder 6 Bilder).
+            widget: list
+            summary: "{{text}}"
+            fields:
+              - { name: bild, label: Bild, widget: image, choose_url: false }
+              - { name: bild_beschreibung, label: Bildbeschreibung, widget: string, required: false }
+              - { name: text, label: Bildunterschrift, widget: string, required: false }
+
+      - name: besuch
+        label: Besuch & Öffnungszeiten
+        file: src/_data/besuch.json
+        format: json
+        fields:
+          - { name: menue, label: Name im Menü oben, widget: string }
+          - { name: titel, label: Überschrift, widget: string }
+          - name: oeffnungszeiten
+            label: Öffnungszeiten
+            label_singular: Tag
+            widget: list
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            summary: "{{tag}}: {{zeit}}"
+            fields:
+              - { name: tag, label: Tag, widget: string, readonly: true }
+              - { name: zeit, label: "Uhrzeit (z. B. 08:00–19:00)", widget: string, required: false }
+              - { name: geschlossen, label: Geschlossen, widget: boolean, default: false }
+
+      - name: isy
+        label: WhatsApp-Assistent ISY
+        file: src/_data/isy.json
+        format: json
+        fields:
+          - { name: hinweis_titel, label: Sprechblase fett, widget: string }
+          - { name: hinweis_text, label: Sprechblase Text, widget: text }
+          - { name: vorgabe_nachricht, label: Vorausgefüllte WhatsApp-Nachricht, widget: string }
+
+  - name: einstellungen
+    label: Firmendaten & Rechtliches
+    editor:
+      preview: false
+    files:
+      - name: firma
+        label: Firmendaten
+        file: src/_data/firma.json
+        format: json
+        fields:
+          - { name: name, label: Firmenname, widget: string }
+          - { name: strasse, label: Straße, widget: string }
+          - { name: plz, label: PLZ, widget: string }
+          - { name: ort, label: Ort, widget: string }
+          - { name: telefon, label: Telefon, widget: string, hint: "Wie angezeigt, z. B. 06104 670700. Der Anruf-Link wird automatisch gebaut." }
+          - { name: whatsapp, label: WhatsApp-Nummer, widget: string }
+          - { name: fax, label: Fax, widget: string, required: false }
+          - { name: email, label: E-Mail, widget: string }
+          - { name: gruendung, label: Gründungsjahr, widget: string }
+          - { name: adresse_url, label: Adresse der Website, widget: string, hint: Nur ändern, wenn die Domain wechselt. }
+
+      - name: seo
+        label: Google & Teilen
+        file: src/_data/seo.json
+        format: json
+        fields:
+          - { name: titel, label: Titel im Browser-Tab und bei Google, widget: string }
+          - { name: beschreibung, label: Beschreibung bei Google, widget: text, hint: Ideal 120–160 Zeichen. }
+          - { name: teilen_titel, label: Titel beim Teilen (WhatsApp, Facebook), widget: string }
+          - { name: teilen_text, label: Text beim Teilen, widget: text }
+
+      - name: rechtliches
+        label: Impressum & Datenschutz
+        file: src/_data/rechtliches.json
+        format: json
+        fields:
+          - name: impressum
+            label: Impressum
+            widget: object
+            hint: Adresse, Telefon und E-Mail kommen automatisch aus den Firmendaten.
+            fields:
+              - { name: geschaeftsfuehrer, label: Geschäftsführer, widget: string }
+              - { name: registergericht, label: Registergericht, widget: string }
+              - { name: register, label: Registernummer, widget: string }
+              - { name: ustid, label: USt-ID, widget: string }
+              - { name: hinweis, label: Zusätzlicher Hinweis, widget: text, required: false }
+          - name: datenschutz
+            label: Datenschutzerklärung
+            widget: object
+            fields:
+              - { name: stand, label: Stand-Zeile, widget: string }
+              - { name: text, label: Text, widget: markdown, buttons: [bold, italic, link, heading-two, bulleted-list, numbered-list], editor_components: [], modes: [rich_text] }

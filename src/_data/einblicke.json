@@ -1,0 +1,21 @@
+{
+  "titel": "Einblicke",
+  "text": "Ein Laden, viele bekannte Gesichter: So sieht es bei uns im Weiskircher Weg aus.",
+  "bilder": [
+    {
+      "bild": "assets/bilder/einblick-familie.webp",
+      "bild_beschreibung": "Leon, Sandra, Andre und Michael Iseler im Laden",
+      "text": "Familie Iseler im Laden."
+    },
+    {
+      "bild": "assets/bilder/einblick-theke.webp",
+      "bild_beschreibung": "Leon Iseler am Telefon an der Theke",
+      "text": "An der Theke: Ihre Bestellung, direkt aufgenommen."
+    },
+    {
+      "bild": "assets/bilder/einblick-laden.webp",
+      "bild_beschreibung": "Blick in den Laden mit Pflegeprodukten und Theke",
+      "text": "Öle, Pflege und Zubehör zum Mitnehmen."
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "menue": "Anfahrt",
+  "titel": "Kommen Sie vorbei.",
+  "oeffnungszeiten": [
+    {
+      "tag": "Montag",
+      "zeit": "08:00–19:00",
+      "geschlossen": false
+    },
+    {
+      "tag": "Dienstag",
+      "zeit": "08:00–19:00",
+      "geschlossen": false
+    },
+    {
+      "tag": "Mittwoch",
+      "zeit": "08:00–19:00",
+      "geschlossen": false
+    },
+    {
+      "tag": "Donnerstag",
+      "zeit": "08:00–19:00",
+      "geschlossen": false
+    },
+    {
+      "tag": "Freitag",
+      "zeit": "08:00–19:00",
+      "geschlossen": false
+    },
+    {
+      "tag": "Samstag",
+      "zeit": "08:00–13:00",
+      "geschlossen": false
+    },
+    {
+      "tag": "Sonntag",
+      "zeit": "",
+      "geschlossen": true
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "menue": "Sortiment",
+  "titel": "Was wir führen",
+  "eintraege": [
+    {
+      "titel": "Kfz-Ersatzteile",
+      "text": "Verschleiß- und Ersatzteile in Markenqualität für nahezu alle Modelle. Was nicht am Lager ist, bestellen wir meist bis zum nächsten Tag.",
+      "bild": "assets/bilder/sortiment-ersatzteile.webp",
+      "bild_beschreibung": "Regal mit Scheibenwischern bei Autoteile Iseler"
+    },
+    {
+      "titel": "Öle und Chemie",
+      "text": "Motor- und Getriebeöle, Frostschutz und Additive, passend zur Freigabe Ihres Fahrzeugs.",
+      "bild": "assets/bilder/sortiment-oele.webp",
+      "bild_beschreibung": "Regale mit Motorölen im Laden"
+    },
+    {
+      "titel": "Zubehör und Pflege",
+      "text": "Batterien, Wischer, Lampen und Pflegemittel für Alltag, Urlaub und Winter.",
+      "bild": "assets/bilder/sortiment-pflege.webp",
+      "bild_beschreibung": "Pflegeprodukte im Verkaufsregal"
+    }
+  ]
+}
